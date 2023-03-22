@@ -17,6 +17,17 @@ public class NetworkController : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject menuToShow;
     [SerializeField] private TextMeshProUGUI textInfos;
 
+    [SerializeField] private TextMeshProUGUI textLeftPoints;
+    [SerializeField] private TextMeshProUGUI textRightPoints;
+
+    [Header("Prefabs")]
+    [SerializeField] private GameObject gameControllerPrefab;
+    [SerializeField] private GameObject playerPrefab;
+    [SerializeField] private GameObject ballPrefab;
+
+    public int leftPoints = 0;
+    public int rightPoints = 0;
+
     private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
@@ -40,6 +51,10 @@ public class NetworkController : MonoBehaviourPunCallbacks
                 }
             }
         }
+
+        textLeftPoints.text = leftPoints.ToString();
+        textRightPoints.text = rightPoints.ToString();
+
     }
 
     public override void OnConnected()
@@ -90,6 +105,19 @@ public class NetworkController : MonoBehaviourPunCallbacks
         menuToShow.SetActive(true);
 
         isConnectedToRoom = true;
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(-15,0), Quaternion.identity, group: 0);
+            
+        }
+        else
+        {
+            PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(15, 0), Quaternion.identity, group: 0);
+            PhotonNetwork.Instantiate(ballPrefab.name, new Vector2(0, 0), Quaternion.identity, group: 0);
+
+        }
+
     }
 
     
