@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D rb;
     PhotonView photonView;
 
-    bool needToMove = false;
+    bool needToMoveX = false;
+    bool needToMoveY = false;
 
     float moveY = 0;
     float moveX = 0;
@@ -34,14 +35,14 @@ public class PlayerController : MonoBehaviour
             {
                 moveY = -1;
                 amountToMove = 150;
-                needToMove = true;
+                needToMoveY = true;
             }
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                moveY = -1;
+                moveY = 1;
                 amountToMove = 150;
-                needToMove = true;
+                needToMoveY = true;
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
@@ -57,14 +58,14 @@ public class PlayerController : MonoBehaviour
             {
                 moveX = -1;
                 amountToMove = 150;
-                needToMove = true;
+                needToMoveX = true;
             }
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
                 moveX = 1;
                 amountToMove = 150;
-                needToMove = true;
+                needToMoveX = true;
             }
         }
         
@@ -72,10 +73,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (needToMove)
+        if (needToMoveX)
         {
-            needToMove = false;
-            rb.AddForce(new Vector2(moveX, moveY) * amountToMove);
+            needToMoveX = false;
+            rb.AddForce(new Vector2(moveX, 0) * amountToMove);
+        }
+
+        if (needToMoveY)
+        {
+            needToMoveY = false;
+            rb.AddForce(new Vector2(0, moveY) * amountToMove);
         }
     }
 }
