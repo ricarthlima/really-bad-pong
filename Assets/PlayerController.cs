@@ -43,16 +43,7 @@ public class PlayerController : MonoBehaviour
                 moveY = 1;
                 amountToMove = 150;
                 needToMoveY = true;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                if (rb.velocity.magnitude < 7.5)
-                {
-                    rb.AddForce(rb.velocity.normalized * 4000);
-                }
-
-            }
+            }            
 
             if (Input.GetKey(KeyCode.LeftArrow))
             {
@@ -66,6 +57,15 @@ public class PlayerController : MonoBehaviour
                 moveX = 1;
                 amountToMove = 150;
                 needToMoveX = true;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (rb.velocity.magnitude < 7.5)
+                {
+                    rb.AddForce(rb.velocity.normalized * 4000);
+                }
+
             }
         }
         
