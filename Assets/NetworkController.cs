@@ -21,7 +21,6 @@ public class NetworkController : MonoBehaviourPunCallbacks
     [SerializeField] private TextMeshProUGUI textRightPoints;
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject gameControllerPrefab;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject ballPrefab;
 
@@ -84,6 +83,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
         PhotonNetwork.CreateRoom(roomid);
     }
 
+
     public void JoinRoom()
     {
         string roomid = inputFieldRoom.text;
@@ -97,6 +97,14 @@ public class NetworkController : MonoBehaviourPunCallbacks
         textErrors.text = "Não foi possível se conectar com essa Sala.\n" + message;
         textErrors.gameObject.SetActive(true);
     }
+    public override void OnPlayerEnteredRoom(Player newPlayer)
+    {
+        if (PhotonNetwork.CurrentRoom.PlayerCount >= 2)
+        {
+            PhotonNetwork.Instantiate(ballPrefab.name, new Vector2(0, 0), Quaternion.identity, group: 0);
+        }
+
+    }
 
     public override void OnJoinedRoom()
     {
@@ -108,16 +116,13 @@ public class NetworkController : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.CurrentRoom.PlayerCount < 2)
         {
-            PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(-15,0), Quaternion.identity, group: 0);
-            
+            PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(-15, 0), Quaternion.identity, group: 0);
+
         }
         else
         {
             PhotonNetwork.Instantiate(playerPrefab.name, new Vector2(15, 0), Quaternion.identity, group: 0);
-            PhotonNetwork.Instantiate(ballPrefab.name, new Vector2(0, 0), Quaternion.identity, group: 0);
-
         }
-
     }
 
     

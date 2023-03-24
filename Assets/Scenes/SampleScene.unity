@@ -148,7 +148,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76152468}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17, y: 0, z: 0}
+  m_LocalPosition: {x: -18, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1608,7 +1608,6 @@ MonoBehaviour:
   textInfos: {fileID: 549397288}
   textLeftPoints: {fileID: 1919912485}
   textRightPoints: {fileID: 1631689139}
-  gameControllerPrefab: {fileID: 1620722516197845669, guid: 811f02faad4a663458770498bb0714db, type: 3}
   playerPrefab: {fileID: 8797005401280773235, guid: c50c42ebf4ee2834b824ae4a449720fb, type: 3}
   ballPrefab: {fileID: 8578003155782172925, guid: d66bc97c307029e49a03442ee8f4f8f6, type: 3}
   leftPoints: 0
@@ -1663,7 +1662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -89.4}
+  m_AnchoredPosition: {x: 0, y: -89.399994}
   m_SizeDelta: {x: 369.85, y: 52.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1520512487
@@ -2302,7 +2301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987044466}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17, y: 0, z: 0}
+  m_LocalPosition: {x: 18, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

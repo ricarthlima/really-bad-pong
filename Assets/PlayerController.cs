@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
                 if (rb.velocity.magnitude < 7.5)
                 {
                     directionToMove = rb.velocity.normalized;
-                    rb.AddForce(directionToMove * 1000);
+                    rb.AddForce(directionToMove * 7000);
                 }
 
             }

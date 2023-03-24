@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
     Rigidbody2D rb;
+    NetworkController networkController;
 
-    NetworkController gameController;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.AddForce(new Vector3(-1, 0) * 200);
-
-        gameController = GameObject.Find("NetworkController").GetComponent<NetworkController>();
+        networkController = GameObject.Find("NetworkController").GetComponent<NetworkController>();
     }
+
+
 
     // Update is called once per frame
     void FixedUpdate()
@@ -21,6 +24,11 @@ public class BallController : MonoBehaviour
         if (rb.velocity.magnitude > 15)
         {
             rb.velocity = rb.velocity.normalized * 15;
+        }
+
+        if (rb.velocity.magnitude < 5)
+        {
+            rb.velocity = rb.velocity.normalized * 5;
         }
     }
 
@@ -36,14 +44,14 @@ public class BallController : MonoBehaviour
         if (collision.gameObject.CompareTag("LimitLeft"))
         {
             ResetPostion();
-            gameController.rightPoints += 1;
+            networkController.rightPoints += 1;
             rb.AddForce(new Vector3(1, 0) * 200);
         }
 
         if (collision.gameObject.CompareTag("LimitRight"))
         {
             ResetPostion();
-            gameController.leftPoints += 1;
+            networkController.leftPoints += 1;
             rb.AddForce(new Vector3(-1, 0) * 200);
         }
     }
