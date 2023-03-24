@@ -11,7 +11,10 @@ public class PlayerController : MonoBehaviour
     PhotonView photonView;
 
     bool needToMove = false;
-    Vector2 directionToMove;
+
+    float moveY = 0;
+    float moveX = 0;
+
     float amountToMove;
 
     void Start()
@@ -29,14 +32,14 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.DownArrow))
             {
-                directionToMove = Vector2.down;
+                moveY = -1;
                 amountToMove = 150;
                 needToMove = true;
             }
 
             if (Input.GetKey(KeyCode.UpArrow))
             {
-                directionToMove = Vector2.up;
+                moveY = -1;
                 amountToMove = 150;
                 needToMove = true;
             }
@@ -45,10 +48,23 @@ public class PlayerController : MonoBehaviour
             {
                 if (rb.velocity.magnitude < 7.5)
                 {
-                    directionToMove = rb.velocity.normalized;
-                    rb.AddForce(directionToMove * 7000);
+                    rb.AddForce(rb.velocity.normalized * 4000);
                 }
 
+            }
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                moveX = -1;
+                amountToMove = 150;
+                needToMove = true;
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+                moveX = 1;
+                amountToMove = 150;
+                needToMove = true;
             }
         }
         
@@ -59,7 +75,7 @@ public class PlayerController : MonoBehaviour
         if (needToMove)
         {
             needToMove = false;
-            rb.AddForce(directionToMove * amountToMove);
+            rb.AddForce(new Vector2(moveX, moveY) * amountToMove);
         }
     }
 }
